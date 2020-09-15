@@ -1,17 +1,8 @@
-const medicinesInitialState = {
-  title: 'My MedicinesList',
-  medicines: [],
-  keyword: ''
+const medicineInitialState = {
+  title: 'My List',
+  lists: []
 };
 
-export const medicineReducer = (state = medicinesInitialState, action) => {
-  // switch (action.type) {
-  //   case SEARCH_KEYWORD:
-  //     return {
-  //       ...state,
-  //       keyword: action.keyword
-  //     };
-  //   default:
+const medicineReducer = (state = medicineInitialState, action) => {
   return state;
-  // }
 };
