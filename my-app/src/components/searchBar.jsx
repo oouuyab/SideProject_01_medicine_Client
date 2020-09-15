@@ -1,18 +1,20 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { searchKeyword } from '../redux/actions';
+import React, { useState } from 'react';
+import searchMediInfo from './apis/searchMediInfo';
 
-export const SearchBar = (props) => {
-  const keyword = useSelector((state) => state.medicineReducer.keyword);
-  const dispatch = useDispatch;
+const SearchBar = () => {
+  const [itemName, setItemName] = useState('');
+  const handleChange = (e) => {
+    return setItemName(e.target.value);
+  };
+
   return (
     <form>
       <input
         type="text"
         placeholder="search.."
-        value={keyword}
-        onChange={(e) => dispatch(searchKeyword(e.target.value))}
         className="searchBar"
+        onChange={handleChange}
+        onKeyDown={() => searchMediInfo(itemName)}
       />
       <button>추가</button>
     </form>
