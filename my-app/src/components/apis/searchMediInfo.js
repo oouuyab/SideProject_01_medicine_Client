@@ -3,10 +3,11 @@ import parseXML from '../../util/parseXML';
 import dotenv from 'dotenv';
 
 dotenv.config();
-const url = process.env.REACT_APP_MEDICINE_URL;
+const url = '/1470000/DURPrdlstInfoService';
 const key = process.env.REACT_APP_MEDICINE_KEY;
 const searchMediInfo = async (entpName, itemName) => {
   try {
+    console.log('itemName :' + itemName);
     let queryParams = '?' + encodeURIComponent('serviceKey') + '=' + key;
     let type = '/getDurPrdlstInfoList';
     queryParams += '&' + encodeURIComponent('entpName') + '=' + encodeURIComponent(entpName);
@@ -23,11 +24,9 @@ const searchMediInfo = async (entpName, itemName) => {
 
     let getInfo = await axios({
       url: url + type + queryParams,
-      method: 'GET',
-      headers: { 'Access-Control-Allow-Origin': 'https://velog.io/@oouuyab' }
+      method: 'GET'
     });
     let parsedData = parseXML(getInfo.data).response.body.items;
-    console.log(parsedData);
     return parsedData;
   } catch (err) {
     console.log('searchMediInfo err');
