@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import searchMediInfo from './apis/searchMediInfo';
+import getContraindicate from './apis/getContraindicate';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -13,7 +14,7 @@ const Recommend = (props) => {
       const query = item.INSERT_FILE.replace('http://www.health.kr/images', '');
       console.log(textUrl + query);
       return (
-        <div id="eachSearchResult">
+        <div onClick={() => getContraindicate(item.ITEM_NAME)} id="eachSearchResult">
           <div key={item.ITEM_NAME}>{item.ITEM_NAME}</div>
           <div key={item.ENTP_NAME}>{item.ENTP_NAME}</div>
           <a key={item.ITEM_SEQ} href={textUrl + query}>
@@ -27,10 +28,9 @@ const Recommend = (props) => {
   }
   return <div>{items}</div>;
 };
-//? 문제 : e.target.value 변경이랑 setState  비동기 문제
+
 const SearchBar = () => {
   const [recoMedi, setRecoMedi] = useState({});
-
   const handleChange = async (e) => {
     let getNewKeyword = () => e.target.value;
     let newKeyword = await getNewKeyword();
@@ -48,7 +48,6 @@ const SearchBar = () => {
   return (
     <form>
       <input type="text" placeholder="search.." className="searchBar" onKeyUp={handleChange} />
-      <button>추가</button>
       <Recommend recoMedi={recoMedi} />
     </form>
   );
