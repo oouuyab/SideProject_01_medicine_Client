@@ -7,27 +7,38 @@ dotenv.config();
 const Recommend = (props) => {
   let results = props.recoMedi.item;
   let addList = props.addList;
-  console.log(addList);
+  console.log(props.recoMedi.item);
   let items = <> </>;
-  if (props.recoMedi.item && Array.isArray(props.recoMedi.item)) {
-    items = results.map((item) => {
-      const textUrl = '/images';
-      const query = item.INSERT_FILE.replace('http://www.health.kr/images', '');
-      return (
-        <div>
-          <button type="submit" onClick={addList} id="eachSearchResult">
-            {item.ITEM_NAME}
-            {/* <div class="item_name" key={item.ITEM_NAME}>
+  console.log(props.recoMedi.item);
+  console.log(Array.isArray(props.recoMedi.item));
+
+  function makeRecommend(item) {
+    const textUrl = '/images';
+    const query = item.INSERT_FILE.replace('http://www.health.kr/images', '');
+    return (
+      <div>
+        <button type="submit" onClick={addList} id="eachSearchResult">
+          {item.ITEM_NAME}
+          {/* <div class="item_name" key={item.ITEM_NAME}>
              
             </div> */}
-            <div key={item.ENTP_NAME}>{item.ENTP_NAME}</div>
-            <a key={item.ITEM_SEQ} href={textUrl + query}>
-              설명서
-            </a>
-          </button>
-        </div>
-      );
-    });
+          <div key={item.ENTP_NAME}>{item.ENTP_NAME}</div>
+          <a key={item.ITEM_SEQ} href={textUrl + query}>
+            설명서
+          </a>
+        </button>
+      </div>
+    );
+  }
+  if (props.recoMedi.item) {
+    if (Array.isArray(props.recoMedi.item)) {
+      items = results.map((item) => {
+        return makeRecommend(item);
+      });
+    } else if (typeof props.recoMedi.item === 'object') {
+      const item = props.recoMedi.item;
+      return makeRecommend(item);
+    }
   } else {
     items = <> </>;
   }

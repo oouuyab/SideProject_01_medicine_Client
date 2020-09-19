@@ -8,6 +8,7 @@ const App = () => {
   const addList = (value) => {
     console.log(value);
     let newList = [...currentList, value];
+    console.log(newList);
     setCurrentList(newList);
   };
 

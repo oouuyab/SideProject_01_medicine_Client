@@ -27,6 +27,7 @@ const searchMediInfo = async (entpName, itemName) => {
       method: 'GET'
     });
     let parsedData = parseXML(getInfo.data).response.body.items;
+    console.log(parsedData);
     return parsedData;
   } catch (err) {
     console.log('searchMediInfo err');
