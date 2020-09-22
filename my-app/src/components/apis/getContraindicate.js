@@ -6,7 +6,7 @@ const getContraindicate = async (itemName) => {
     data: {
       query: `
           query{
-            getContraindicate(ITEM_NAME: \"${itemName}\"){
+            getContraindicate(ITEM_NAME: \"${itemName}\", MIXTURE_ITEM_NAME: \"${mixtureItemName}\"){
               ENTP_NAME
               ITEM_NAME
               MIXTURE_ENTP_NAME
