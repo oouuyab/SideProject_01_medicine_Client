@@ -3,7 +3,6 @@ import React from 'react';
 const CurrentList = (props) => {
   try {
     const { currentList, onClick } = props;
-    console.log(onClick);
     function makeList(item) {
       return (
         <div key={item[0] + item[1]}>
