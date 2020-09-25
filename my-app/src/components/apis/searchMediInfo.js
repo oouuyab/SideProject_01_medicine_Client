@@ -7,7 +7,6 @@ const url = '/1470000/DURPrdlstInfoService';
 const key = process.env.REACT_APP_MEDICINE_KEY;
 const searchMediInfo = async (entpName, itemName) => {
   try {
-    console.log('itemName :' + itemName);
     let queryParams = '?' + encodeURIComponent('serviceKey') + '=' + key;
     let type = '/getDurPrdlstInfoList';
     queryParams += '&' + encodeURIComponent('entpName') + '=' + encodeURIComponent(entpName);
