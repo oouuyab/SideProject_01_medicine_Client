@@ -17,6 +17,7 @@ const getContraindicate = async (itemName, mixtureItemName) => {
         `
     }
   });
+  console.log(result.data.data.contraindicate);
   return result.data.data.contraindicate;
 };
 

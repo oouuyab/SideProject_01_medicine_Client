@@ -2,9 +2,25 @@ import React from 'react';
 import dotenv from 'dotenv';
 dotenv.config();
 
+const SearchBar = (props) => {
+  const { addList, handleChange, recoMedi } = props;
+
+  return (
+    <form>
+      <input
+        type="text"
+        placeholder="약 이름을 적어주세요"
+        className="searchBar"
+        onKeyUp={handleChange}
+      />
+      <Recommend recoMedi={recoMedi} addList={addList} />
+    </form>
+  );
+};
+
 const Recommend = (props) => {
-  let results = props.recoMedi.item;
-  let addList = props.addList;
+  let { addList, recoMedi } = props;
+  let results = recoMedi.item;
   let items = <> </>;
 
   function makeRecommend(item) {
@@ -12,7 +28,7 @@ const Recommend = (props) => {
     // const query = item.INSERT_FILE.replace('http://www.health.kr/images', '');
     return (
       <div key={item.ITEM_NAME + item.ENTP_NAME}>
-        <button type="button" onClick={addList} id="eachSearchResult">
+        <button type="button" onClick={addList}>
           <div key={item.ITEM_NAME}>{item.ITEM_NAME}</div>
           <div key={item.ENTP_NAME}>{item.ENTP_NAME}</div>
           {/* <a key={item.ITEM_SEQ} href={textUrl + query}>
@@ -22,13 +38,13 @@ const Recommend = (props) => {
       </div>
     );
   }
-  if (props.recoMedi.item) {
-    if (Array.isArray(props.recoMedi.item)) {
+  if (results) {
+    if (Array.isArray(results)) {
       items = results.map((item) => {
         return makeRecommend(item);
       });
-    } else if (typeof props.recoMedi.item === 'object') {
-      const item = props.recoMedi.item;
+    } else if (typeof results === 'object') {
+      const item = results;
       return makeRecommend(item);
     }
   } else {
@@ -36,21 +52,4 @@ const Recommend = (props) => {
   }
   return <div>{items}</div>;
 };
-
-const SearchBar = (props) => {
-  const addList = props.addList;
-
-  return (
-    <form>
-      <input
-        type="text"
-        placeholder="search.."
-        className="searchBar"
-        onKeyUp={props.handleChange}
-      />
-      <Recommend recoMedi={props.recoMedi} addList={addList} />
-    </form>
-  );
-};
-
 export default SearchBar;
