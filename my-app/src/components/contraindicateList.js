@@ -2,10 +2,8 @@ import React from 'react';
 
 const contarindicateList = (props) => {
   try {
-    const { currentList, contarindicate, getContraindicateResult } = props;
-
-    getContraindicateResult(currentList);
-
+    const { contarindicate } = props;
+    console.log(contarindicate);
     let contarindicateList = contarindicate.map((items) => {
       return (
         <div key={items}>
@@ -22,10 +20,9 @@ const contarindicateList = (props) => {
         </div>
       );
     });
-
     return <div>{contarindicateList}</div>;
   } catch (err) {
-    console.log('CurrentList err');
+    console.log('ContraindicateList err');
     console.log(err);
     return <></>;
   }
