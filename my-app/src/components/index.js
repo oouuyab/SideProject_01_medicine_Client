@@ -1,7 +1,9 @@
 import SearchBar from './searchBar';
 
 const Components = {
-  SearchBar
+  SearchBar,
+  CurrentList,
+  ContraidicateList
 };
 
 export default Components;
