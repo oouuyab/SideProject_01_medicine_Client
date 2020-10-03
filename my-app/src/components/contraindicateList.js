@@ -1,12 +1,12 @@
 import React from 'react';
 
-const contarindicateList = (props) => {
+const contraindicateList = (props) => {
   try {
-    const { contarindicate } = props;
-    console.log(contarindicate);
-    let contarindicateList = contarindicate.map((items) => {
+    const { contraindicate } = props;
+    console.log(contraindicate.length);
+    let contraindicateList = contraindicate.map((items) => {
       return (
-        <div key={items}>
+        <div key={items.ITEM_SEQ}>
           <div>제조사</div>
           <div>{items.ENTP_NAME}</div>
           <div>품목 명</div>
@@ -20,7 +20,7 @@ const contarindicateList = (props) => {
         </div>
       );
     });
-    return <div>{contarindicateList}</div>;
+    return <div>{contraindicateList}</div>;
   } catch (err) {
     console.log('ContraindicateList err');
     console.log(err);
@@ -28,4 +28,4 @@ const contarindicateList = (props) => {
   }
 };
 
-export default contarindicateList;
+export default contraindicateList;

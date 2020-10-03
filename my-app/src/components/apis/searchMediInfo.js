@@ -26,12 +26,10 @@ const searchMediInfo = async (entpName, itemName) => {
       method: 'GET'
     });
     let parsedData = parseXML(getInfo.data).response.body.items;
-    console.log(parsedData.item);
     let recommend = parsedData.item;
-    if (recommend.length > 0) {
+    if (recommend && recommend.length > 0) {
       recommend = recommend.slice(0, 10);
     }
-    console.log(recommend);
     return recommend;
   } catch (err) {
     console.log('searchMediInfo err');

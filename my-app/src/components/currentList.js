@@ -13,6 +13,7 @@ const CurrentList = (props) => {
         </div>
       );
     }
+
     return currentList.map((item) => {
       return makeList(item);
     });
