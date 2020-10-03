@@ -38,23 +38,27 @@
 } */
 
 .container {
-  background-color: aquamarine;
+  background-color: yellowgreen;
   display: grid;
-  grid-template-rows: repeat(3, 100px);
-  grid-template-columns: repeat((3, 1fr));
+  grid-template-rows: repeat(5, 200px);
+  grid-template-columns: repeat(5, 200px);
 }
 
 .title {
+  background-color: tomato;
   text-align: center;
   grid-column-start: 1;
 }
+
 .searchBar {
   padding: 0;
   border-width: 0;
-  background-color: azure;
+  background-color: skyblue;
   margin-left: 10px;
-  grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 4;
   width: 60%;
   height: 20px;
   text-align: center;
@@ -64,16 +68,32 @@
   padding: 0;
   overflow-y: scroll;
   margin-right: 0;
-  background-color: azure;
+  background-color: blue;
   grid-column-start: 1;
   grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 4;
   height: 300%;
 }
 
 .recommendResult {
   margin-right: 0;
   padding: 0;
-  background-color: azure;
+  background-color: blueviolet;
   margin-left: 10px;
   width: 60.2%;
+}
+
+.currentList {
+  background-color: coral;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 3;
+}
+
+.resultList {
+  background-color: cadetblue;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
 }
