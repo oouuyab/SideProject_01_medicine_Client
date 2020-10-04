@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchBar from './components/searchBar';
 import CurrentList from './components/currentList';
 import searchMediInfo from './components/apis/searchMediInfo';
@@ -20,12 +20,34 @@ const App = () => {
     await setRecoMedi(searchResult);
   };
 
+  useEffect(() => {
+    const getContarindicateResult = async () => {
+      let result = [];
+      for (let i = 0; i < currentList.length; i++) {
+        for (let j = 0; j < currentList.length; j++) {
+          if (currentList[i][0] !== currentList[j][0]) {
+            console.log(currentList[i][0], currentList[j][0]);
+            let contraindicateResult = await getContraindicate(
+              currentList[i][0],
+              currentList[j][0]
+            );
+            if (contraindicateResult.ITEM_NAME !== null) {
+              console.log(contraindicateResult);
+              result.push(contraindicateResult);
+            }
+          }
+        }
+      }
+      setContraindicate(result);
+    };
+    getContarindicateResult();
+  }, [currentList]);
+
   const deleteItem = async (e) => {
     let target = e.currentTarget.innerText.split('\n')[0];
     setCurrentList(currentList.filter((item) => item[0] !== target));
   };
 
-  //! 입력한 약의 갯수 -1 만큼의 contraindicate 결과가 출력되는 버그 => 입력한 약의 갯수만큼의 contraindicate 결과 출력 수정 필요
   const addList = async (e) => {
     let isNew = true;
     const [itemName, entpName] = e.currentTarget.innerText.split('\n');
@@ -40,18 +62,7 @@ const App = () => {
       newList = [...currentList, [itemName, entpName]];
     }
     setCurrentList(newList);
-    let result = [];
-    for (let i = 0; i < currentList.length; i++) {
-      for (let j = 0; j < currentList.length; j++) {
-        // console.log(currentList[i][0], currentList[j][0], currentList[i][0] !== currentList[j][0]);
-        if (currentList[i][0] !== currentList[j][0]) {
-          let contraindicateResult = await getContraindicate(currentList[i][0], currentList[j][0]);
-          console.log(contraindicateResult);
-          result.push(contraindicateResult);
-        }
-      }
-    }
-    setContraindicate(result);
+
     if (isNew === false) {
       alert('이미 추가한 약 이름입니다.');
     }
