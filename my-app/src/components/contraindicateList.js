@@ -6,7 +6,7 @@ const contraindicateList = (props) => {
     console.log(contraindicate.length);
     let contraindicateList = contraindicate.map((items) => {
       return (
-        <div key={items.ITEM_SEQ}>
+        <div key={items.ITEM_NAME + items.MIXTURE_ITEM_NAME}>
           <div>제조사</div>
           <div>{items.ENTP_NAME}</div>
           <div>품목 명</div>
