@@ -6,7 +6,7 @@ const SearchBar = (props) => {
   const { addList, handleChange, recoMedi } = props;
 
   return (
-    <div>
+    <div className="searchBarContainer">
       <form>
         <input
           type="text"
