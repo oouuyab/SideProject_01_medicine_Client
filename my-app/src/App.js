@@ -72,14 +72,18 @@ const App = () => {
 
   return (
     <div className="container">
-      <h1 className="title">Hello World!</h1>
-      <SearchBar
-        className="searchBar"
-        addList={addList}
-        handleChange={handleChange}
-        recoMedi={recoMedi}
-      />
-      <CurrentList className="currentList" currentList={currentList} onClick={deleteItem} />
+      <h1 className="title">약 꼭!</h1>
+      <searchBarContainer className="searchBarContainer">
+        <SearchBar
+          className="searchBar"
+          addList={addList}
+          handleChange={handleChange}
+          recoMedi={recoMedi}
+        />
+      </searchBarContainer>
+      <h2 className="currentList">
+        <CurrentList currentList={currentList} onClick={deleteItem} />
+      </h2>
       <ContraindicateList className="resultList" contraindicate={contraindicate} />
     </div>
   );
