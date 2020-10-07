@@ -22,6 +22,16 @@ const SearchBar = (props) => {
   );
 };
 
+document.addEventListener(
+  'keydown',
+  (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+    }
+  },
+  true
+);
+
 const Recommend = (props) => {
   let { onClick, recoMedi } = props;
   let results = recoMedi;
