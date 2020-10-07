@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import SearchBar from './components/searchBar';
 import CurrentList from './components/currentList';
+import ContraindicateList from './components/contraindicateList';
+import Status from './components/status';
 import searchMediInfo from './components/apis/searchMediInfo';
 import getContraindicate from './components/apis/getContraindicate';
-import ContraindicateList from './components/contraindicateList';
 import './App.css';
 
 const App = () => {
@@ -73,6 +74,9 @@ const App = () => {
   return (
     <div className="container">
       <h1 className="title">약 꼭!</h1>
+      <status className="status">
+        <Status contraindicate={contraindicate} />
+      </status>
       <searchBarContainer className="searchBarContainer">
         <SearchBar
           className="searchBar"
@@ -84,7 +88,7 @@ const App = () => {
       <h2 className="currentList">
         <CurrentList currentList={currentList} onClick={deleteItem} />
       </h2>
-      <ContraindicateList className="resultList" contraindicate={contraindicate} />
+      {/* <ContraindicateList className="resultList" contraindicate={contraindicate} /> */}
     </div>
   );
 };
