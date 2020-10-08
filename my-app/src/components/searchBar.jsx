@@ -59,7 +59,7 @@ const Recommend = (props) => {
       const item = results;
       return makeRecommend(item);
     }
-    return <div>{items}</div>;
+    return <>{items}</>;
   }
   return;
 };
